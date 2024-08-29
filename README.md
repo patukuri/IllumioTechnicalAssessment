@@ -21,7 +21,7 @@ I tested the program by altering the log file by adding and deleting a row, by c
 Also, I have tested port and protocol counts by altering the combinations in log file
 
 **Assumptions Made**
-I hard coded the ```Protocol and its Text version ( 6 for TCP)```in a HashMap to map each other and to use them while counting the tags based on the protocol and port mappings, So this code will work for the protocols that are present in this HashMap.  
+I hard coded the ```Protocol and its Text version (Eg:  6 for TCP)```in a HashMap to map each other and to use them while counting the tags based on the protocol and port mappings, So this code will work for the protocols that are present in this HashMap.  
 If there are new protocols added to the lookup table then those should be added to the ``` protocolMappings``` hashmap in the program.  
 Also, the log format shouldn't change as I am using the protocol and dstport based on the indexes from the current log file and from aws documentation   
 Also, I assumed that the ```FlowLogData``` file is a txt file, if I had assumed this as a csv file then the program will change in other way  
