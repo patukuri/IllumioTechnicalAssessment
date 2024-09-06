@@ -1,3 +1,4 @@
+import io.github.pixee.security.BoundedLineReader;
 import java.io.*;
 import java.util.*;
 
@@ -24,8 +25,8 @@ public class FlowLogTagger {
         Map<String, String> tagMappings = new HashMap<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
-            br.readLine(); // Skip the first line
-            while ((line = br.readLine()) != null) {
+            BoundedLineReader.readLine(br, 5_000_000); // Skip the first line
+            while ((line = BoundedLineReader.readLine(br, 5_000_000)) != null) {
                 String[] parts = line.split(",");
 
                 if (parts.length == 3) {
@@ -51,7 +52,7 @@ public class FlowLogTagger {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             String protocolString= "";
-            while ((line = br.readLine()) != null) {
+            while ((line = BoundedLineReader.readLine(br, 5_000_000)) != null) {
                 String[] parts = line.split("\\s+");
                 if (parts.length > 7) { // Check if the line has enough words
                     String dstPort = parts[6];// as per aws documentation
