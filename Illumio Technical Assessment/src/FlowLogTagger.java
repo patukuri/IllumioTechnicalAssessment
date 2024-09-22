@@ -1,4 +1,5 @@
 import java.io.*;
+import java.nio.file.Files;
 import java.util.*;
 
 public class FlowLogTagger {
@@ -77,7 +78,7 @@ public class FlowLogTagger {
 
     // Write the output to a file
     private static void writeOutput(String filePath, Map<String, Integer> tagCounts, Map<String, Integer> portProtocolCounts) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
+        try (BufferedWriter bw = Files.newBufferedWriter(filePath.toPath())) {
             bw.write("Tag Counts:\n");
             bw.write("Tag,Count\n");
             for (Map.Entry<String, Integer> entry : tagCounts.entrySet()) {
